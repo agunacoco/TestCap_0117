@@ -25,5 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/login/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/login/google/callback', [GoogleController::class, 'callback']);
 
-// Route::get('/login/twitter', [TwitterController::class, 'redirect'])->name('twitter.login');;
-// Route::get('/login/twitter/callback', [TwitterController::class, 'callback']);
+Route::get('/login/twitter', [TwitterController::class, 'redirect'])->name('twitter.login');
+Route::get('/login/twitter/callback', [TwitterController::class, 'callback']);

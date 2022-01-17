@@ -57,6 +57,10 @@
                                     Google
                                 </a>
 
+                                <a href="{{ route('twitter.login') }}" class="btn btn-primary">
+                                    Twitter
+                                </a>
+
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>

@@ -18,17 +18,31 @@ class GoogleController extends Controller
 
     public function callback(){
 
-        $user = Socialite::driver('google')->user();
-        $findUser = User::where('email', $user->getEmail())->first();
-        dd($user);
-        if($findUser){
-            Auth::login($findUser);
-            return redirect('/');
+        $googleUser = Socialite::driver('google')->user();
+        
+        $eUser = User::where('email', $googleUser->email)->first(); // laravel로 회원가입을 했을 경우
+        $gUser = User::where('google_id', $googleUser->id)->first(); // google_id가 있을 경우
+
+        if($eUser){
+            if($gUser){
+                Auth::login($eUser);
+                return redirect('/');
+            }else{
+
+                $eUser->update([
+                    'google_id' => $googleUser->id
+                ]);
+                Auth::login($eUser);
+                return redirect('/');
+            }
+            
         }else{
+
             $newUser = User::Create([
-                'email' => $user->getEmail(),
+                'email' => $googleUser->getEmail(),
                 'password' => Hash::make(Str::random(24)), //24자 랜덤 비밀번호를 주세요.
-                'name' => $user->getName()
+                'name' => $googleUser->getName(),
+                'google_id' => $googleUser->id,
             ]);
             //로그인 처리
             Auth::login($newUser);

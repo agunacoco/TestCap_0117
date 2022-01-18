@@ -17,9 +17,10 @@ class GoogleController extends Controller
     }
 
     public function callback(){
+
         $user = Socialite::driver('google')->user();
         $findUser = User::where('email', $user->getEmail())->first();
-
+        dd($user);
         if($findUser){
             Auth::login($findUser);
             return redirect('/');
@@ -31,9 +32,7 @@ class GoogleController extends Controller
             ]);
             //로그인 처리
             Auth::login($newUser);
-            
-            //뷰를 반환, 사용자가 원래 요청했던 페이지로 redirection
-            //원래 요청했던 페이지가 없으면 /dashboard로 redirection
+
             return redirect('/');
         }
         

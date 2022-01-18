@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('coin')->default(0);
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

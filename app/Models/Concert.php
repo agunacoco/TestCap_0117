@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Concert extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'category_id',
+        'startDate', 'endDate',
+        'title', 'desc', 'content', 'artist', 'price',
+        'remainTicket',
+        'openDate', 'closeDate',
+        'playTime', 'reEndDate'
+    ];
+
+    public function users(){
+        return $this->belongsToMany(User::class)->withPivot('use', 'gRank', 'pRank');
+    }
 }

@@ -18,8 +18,8 @@ class CreateConcertUserTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('concert_id')->constrained()->onDelete('cascade');
             $table->boolean('use')->default(false);
-            $table->bigInteger('gRank');
-            $table->bigInteger('pRank');
+            $table->bigInteger('gRank')->nullable();
+            $table->bigInteger('pRank')->nullable();
             $table->timestamps();
         });
     }

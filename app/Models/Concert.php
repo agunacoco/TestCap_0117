@@ -12,7 +12,7 @@ class Concert extends Model
     protected $fillable = [
         'category_id',
         'startDate', 'endDate',
-        'title', 'desc', 'content', 'artist', 'price',
+        'title', 'poster', 'desc', 'content', 'artist', 'price',
         'remainTicket',
         'openDate', 'closeDate',
         'playTime', 'reEndDate'
@@ -20,5 +20,9 @@ class Concert extends Model
 
     public function users(){
         return $this->belongsToMany(User::class)->withPivot('use', 'gRank', 'pRank');
+    }
+
+    public function chats(){
+        return $this->hasMany(Chat::class);
     }
 }

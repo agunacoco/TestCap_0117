@@ -18,7 +18,7 @@ class CreateCoinTable extends Migration
             $table->index('user_id');
             $table->index('concert_id')->nullable();
             $table->index('chat_id')->nullable();
-            $table->string('cHistory');
+            $table->float('cHistory');
             $table->timestamps();
         });
     }

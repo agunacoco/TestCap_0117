@@ -20,7 +20,7 @@ class CreateConcertsTable extends Migration
             $table->date('endDate');
             $table->string('title');
             $table->string('desc');
-            $table->longText('content')->nullable();;
+            $table->longText('content')->nullable();
             $table->string('artist');
             $table->bigInteger('price');
             $table->unsignedBigInteger('remainTicket')->nullable();
